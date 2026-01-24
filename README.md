@@ -67,6 +67,45 @@ Civix now includes a standalone interactive simulator that allows users to step 
 - 🏅 **XP & Badges** – Earn experience points and unlock achievement badges locally  
 - 💡 **Frontend-Only Logic** – Built entirely in React with `localStorage` persistence for decision history and XP tracking
 
+##📂 Project Structure
+
+```
+Civix/
+├── .github/              # GitHub Actions workflows and issue/PR templates
+├── backend/              # The entire Node.js/Express.js backend API
+│   ├── config/           # Database (MongoDB), Swagger, and other configs
+│   ├── controllers/      # Business logic for API routes (e.g., auth, issues)
+│   ├── middlewares/      # Custom middleware (e.g., auth, error handling, file uploads)
+│   ├── models/           # Mongoose schemas for the database (e.g., User, Issue)
+│   ├── routes/           # API endpoint definitions (e.g., auth.js, profileRoutes.js)
+│   ├── __tests__/        # Backend tests (Jest)
+│   ├── utils/            # Utility functions (e.g., email, token, file upload)
+│   ├── .env.example      # Environment variable template for the backend
+│   └── server.js         # Main backend server entry point
+│
+├── cypress/              # End-to-end (E2E) tests
+│
+├── public/               # Static assets for the frontend
+│   ├── gtfs/             # Static data files (CSV, JSON) for app features
+│   ├── index.html        # The main HTML template for the React app
+│   └── *.png, *.svg      # Public images, logos, and favicons
+│
+├── src/                  # The main React frontend application source code
+│   ├── Pages/            # All top-level page components (e.g., Home, About, ReportIssue)
+│   ├── components/       # Reusable UI components (e.g., Navbar, Footer, Chatbot)
+│   ├── assets/           # Images and logos imported into React components
+│   ├── hooks/            # Custom React hooks (e.g., useProfileStatus)
+│   ├── utils/            # Frontend utility functions
+│   ├── App.jsx           # Main React app component (routing)
+│   └── index.jsx         # React app entry point
+│
+├── .gitignore            # Files and folders to be ignored by Git
+├── LICENSE               # Project's open-source license
+├── README.md             # This file
+├── package.json          # Frontend dependencies and scripts (React)
+└── tailwind.config.js    # Tailwind CSS configuration
+```
+
 ## 🛠️ Tech Stack  
 ### Frontend  
 - React.js  
@@ -169,7 +208,7 @@ curl -X POST http://localhost:5000/api/auth/login \
 ```bash
 # Get all issues
 curl -X GET http://localhost:5000/api/issues
-
+```
 # Create new issue with image
 curl -X POST http://localhost:5000/api/issues \
   -H "Authorization: Bearer YOUR_JWT_TOKEN" \
@@ -184,7 +223,7 @@ curl -X PATCH http://localhost:5000/api/issues/1/status \
   -H "Authorization: Bearer ADMIN_JWT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"status":"in-progress"}'
-```
+
 
 ### API Documentation
 - **Swagger UI**: `http://localhost:5000/api-docs`
@@ -232,12 +271,13 @@ E2E tests simulate real user workflows in a browser from start to finish. This h
 To open the Cypress Test Runner, navigate to the `/frontend` directory and run:
 ```sh
 npm run cypress:open
-
+```
 ### 📥 Installation  
 📦 1.**Clone the repository**:  
    ```bash
    git clone https://github.com/Harshs16/civix.git
    cd Civix
+```
   
 📦 2. **Install Dependencies**
 
